@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.45/moment-timezone-with-data-1970-2030.min.js"></script>
+    <title>🕰️ Time Zone dropdown ⌚️</title>
+  </head>
+  <body>
+    <label for="cities"> </label>
+    <select name="" id="cities">
+      <option value="">Select a city...</option>
+      <option value="paris">Paris 🇫🇷</option>
+      <option value="tokyo">Tokyo 🇯🇵</option>
+      <option value="london">London 🏴󠁧󠁢󠁥󠁮󠁧󠁿</option>
+    </select>
+    <script>
+      function showTime(event) {
+        if (event.target.value.length > 0) {
+          //alert(event.target.value);
+          if (event.target.value === "paris") {
+            alert(`It is ${parisTime} in Europe/Paris`);
+          }
+          if (event.target.value === "tokyo") {
+            alert(`It is ${tokyoTime} in Asia/Tokyo`);
+          }
+          if (event.target.value === "london") {
+            alert(`It is ${londonTime} in Europe/London`);
+          }
+        }
+      }
+      let citySelect = document.querySelector("#cities");
+      citySelect.addEventListener("change", showTime);
+
+      let parisTime = moment()
+        .tz("Europe/Paris")
+        .format("dddd, MMMM Do, YYYY HH:MM A ");
+      let tokyoTime = moment()
+        .tz("Asia/Tokyo")
+        .format("dddd, MMMM Do, YYYY HH:MM A ");
+      let londonTime = moment()
+        .tz("Europe/London")
+        .format("dddd, MMMM Do, YYYY HH:MM A");
+      let timeDate = moment().tz.format(
+        `dddd, MMMM Do, YYYY HH:MM A in ${cities}`
+      );
+    </script>
+  </body>
+</html>
